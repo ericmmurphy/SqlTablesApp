@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JOptionPane;
 
@@ -36,11 +35,9 @@ public class MenuCreateRow extends AbstractMenuRow implements ActionListener {
 	public void changeCreateButtonStatus() {
 		if (this.create.getText().equals("create table")) {
 			this.create.setText("cancel");
-			//this.create.setMargin(new Insets(5,23,5,23));
 			this.create.setMargin(new Insets(3,23,3,23));
 		} else {
 			this.create.setText("create table");
-			//this.create.setMargin(new Insets(5,8,5,8));
 			this.create.setMargin(new Insets(3,8,3,8));
 		}
 	}
@@ -86,7 +83,7 @@ public class MenuCreateRow extends AbstractMenuRow implements ActionListener {
 		String text = this.textField.getText();
 		if(text.equals("")) return;
 		
-		System.out.println(text);
+		//System.out.println(text);
 		try {
 			boolean tableCreationSuccess = this.body.createNewTable(text);
 			if (tableCreationSuccess) {

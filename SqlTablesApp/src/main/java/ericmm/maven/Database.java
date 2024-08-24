@@ -6,56 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/*
-class StringGenerator {
-	static StringGenerator uniqueInstance = null;
-	int val;
-	
-	private StringGenerator() {
-		this.val = 0;
-	}
-	
-	public static StringGenerator getInstance() {
-		if (uniqueInstance == null) {
-			uniqueInstance = new StringGenerator();
-		}
-		return uniqueInstance;
-	}
-	
-	public int getVal() { return this.val; }
-	
-	public void newVal() {
-		this.val++;
-		
-		if (this.val > 999999) {
-			this.val = 0;
-		}
-	}
-	
-	public String generateString(String name) {
-		this.newVal();
-		
-		int diffLength = 6 - ("" + this.val).length();
-		String padding = "";
-		for (int i = 0; i < diffLength; i++) {
-			padding += "0";
-		}
-		
-		return name + "_" + padding + this.val;
-	}
-}
-*/
-
 public class Database {
 	private Connection connection;
 	private Statement statement;
-	//private StringGenerator stringGenerator;
 	
 	Database(String db) {
 		try {
         	this.connection = DriverManager.getConnection(db);
         	this.statement = connection.createStatement();
-        	//this.stringGenerator = StringGenerator.getInstance();
 		} catch (SQLException err) {
 			// if the error message is "out of memory",
 			// it probably means no database file is found

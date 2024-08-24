@@ -1,6 +1,5 @@
 package ericmm.maven;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -40,10 +39,10 @@ public class MenuRow implements ActionListener {
 	
 	public void setPanelValues() {
 		this.panel = new JPanel();
-		this.panel.setBackground(new Color(0xf6f8fd));
+		this.panel.setBackground(StyleFactory.getBackgroundColorLight());
 		this.panel.setBorder(
 			BorderFactory.createCompoundBorder(
-				BorderFactory.createLineBorder(new Color(0x1b1e29)), 
+				BorderFactory.createLineBorder(StyleFactory.getForegroundColor()), 
 				BorderFactory.createEmptyBorder(2, 2, 2, 2)));
 		this.panel.setLayout(new BoxLayout(this.panel, BoxLayout.LINE_AXIS));
 		this.panel.add(this.select);
@@ -56,8 +55,8 @@ public class MenuRow implements ActionListener {
 	public void setSelectButtonValues() {
 		this.select = new JButton();
 		this.select.setText(this.tableName);
-		this.select.setForeground(new Color(0x1b1e29));
-		this.select.setBackground(new Color(0xf6f8fd));
+		this.select.setForeground(StyleFactory.getForegroundColor());
+		this.select.setBackground(StyleFactory.getBackgroundColorLight());
 		this.select.setFocusable(false);
 		this.addSelectButtonActionListener();
 	}
@@ -65,8 +64,8 @@ public class MenuRow implements ActionListener {
 	public void setRenameButtonValues() {
 		this.rename = new JButton();
 		this.rename.setText("rename");
-		this.rename.setForeground(new Color(0x1b1e29));
-		this.rename.setBackground(new Color(0xf6f8fd));
+		this.rename.setForeground(StyleFactory.getForegroundColor());
+		this.rename.setBackground(StyleFactory.getBackgroundColorLight());
 		this.rename.setFocusable(false);
 		this.addRenameButtonActionListener();
 	}
@@ -74,8 +73,8 @@ public class MenuRow implements ActionListener {
 	public void setDeleteButtonValues() {
 		this.delete = new JButton();
 		this.delete.setText("delete");
-		this.delete.setForeground(new Color(0x1b1e29));
-		this.delete.setBackground(new Color(0xf6f8fd));
+		this.delete.setForeground(StyleFactory.getForegroundColor());
+		this.delete.setBackground(StyleFactory.getBackgroundColorLight());
 		this.delete.setFocusable(false);
 		this.addDeleteButtonActionListener();
 	}
@@ -137,9 +136,11 @@ public class MenuRow implements ActionListener {
 	}
 	
 	public void selectTable() {
-		//System.out.println(this.select.getText());
-		this.body.window.selectTable(this.select.getText());
-		//this.body.openTable(this.panel, this.body.panel);
+		try {
+			this.body.window.loadTable(this.select.getText());
+		} catch (Exception e) {
+			//
+		}
 	}
 	
 	public void tableDeletion() {
@@ -177,7 +178,7 @@ public class MenuRow implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == this.select) {
-			//this.removeAllActionListeners();
+			this.removeAllActionListeners();
 			this.selectTable();
 		} else if (event.getSource() == this.rename) {
 			this.removeAllActionListeners();

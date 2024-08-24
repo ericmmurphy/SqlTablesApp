@@ -1,11 +1,9 @@
 package ericmm.maven;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JOptionPane;
 
